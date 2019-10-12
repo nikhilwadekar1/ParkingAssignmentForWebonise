@@ -1,0 +1,9 @@
+.slot-cards {
+    width: 17.5rem;
+    display: inline-flex;
+}
+
+.not-available-slot-card {
+    background-color: lightgrey;
+    color: white;
+}

@@ -1,0 +1,51 @@
+<!-- <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Book My Parking</h1>
+        <p class="lead">Hassel free way to find a parking spot!</p>
+    </div>
+</div> -->
+
+<nav class="navbar navbar-dark bg-dark text-white mb-4">
+    <div class="container-fluid">
+        <h4>Book My Parking</h4>
+        <span class="lead">Hassel free way to find a parking spot!</span>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3 col-sm-12">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Select City</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="selectedCityOption"
+                    (change)="getAreas()">
+                    <option selected>Choose...</option>
+                    <option *ngFor="let city of cities" value="{{city.cityId + '_' + city.cityName}}">{{city.cityName}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-12">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect02">Select Area</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="selectedAreaOption"
+                    (change)="getSlots()">
+                    <option selected>Choose...</option>
+                    <option *ngFor="let area of areas" value="{{area.id.areaId + '_' + area.id.cityId}}">
+                        {{area.areaName}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <button type="button" class="btn btn-info float-right" (click)="logout()">Logout</button>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

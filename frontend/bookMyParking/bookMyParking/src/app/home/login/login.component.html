@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row" style="margin-top: 100px">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 col-sm-12">
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessageFlag">
+                {{errorMessage}}
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Book My Parking</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Login</h6>
+                    <form [formGroup]="userForm">
+                        <div class="form-group" (ngSubmit)="login()">
+                            <label for="username">User Name</label>
+                            <input type="text" class="form-control" formControlName="userName" id="username"
+                                placeholder="Enter User Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" formControlName="password"
+                                id="exampleInputPassword1" placeholder="Password">
+                        </div>
+
+                        <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-danger ml-2">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
