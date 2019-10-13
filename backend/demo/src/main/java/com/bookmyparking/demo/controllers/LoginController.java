@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookmyparking.demo.models.LoginModel;
-import com.bookmyparking.demo.models.Message;
+import com.bookmyparking.demo.models.UserModel;
 import com.bookmyparking.demo.services.LoginService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -18,7 +18,7 @@ public class LoginController {
 	LoginService loginService;
 	
 	@RequestMapping("/login")
-	public Message login(@RequestBody LoginModel loginModel) {
+	public UserModel login(@RequestBody LoginModel loginModel) {
 		System.out.println(loginModel.getUserName());
 		return this.loginService.login(loginModel);
 	}

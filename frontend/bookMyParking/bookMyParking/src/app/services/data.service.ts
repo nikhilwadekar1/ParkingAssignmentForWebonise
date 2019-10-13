@@ -14,6 +14,7 @@ export class DataService {
   private fwSlotsUrl: string;
   private reserveSlotUrl: string;
   private reserveFwSlotUrl: string;
+  private deductbalanceUrl: string;
   private data;
   private fwData;
 
@@ -25,6 +26,7 @@ export class DataService {
     this.fwSlotsUrl = configuration.server + 'fwSlots';
     this.reserveSlotUrl = configuration.server + 'reserveSlot';
     this.reserveFwSlotUrl = configuration.server + 'reserveFwSlot';
+    this.deductbalanceUrl = configuration.server + 'deductBalance';
   }
 
   public slotData = new BehaviorSubject(this.data);
@@ -57,5 +59,9 @@ export class DataService {
 
   public reserveFwSlot<T>(slot): Observable<T> {
     return this.http.post<T>(this.reserveFwSlotUrl, slot);
+  }
+
+  public deductBalance<T>(user): Observable<T> {
+    return this.http.post<T>(this.deductbalanceUrl, user);
   }
 }

@@ -1,3 +1,4 @@
+import { UserDetailsService } from './../../services/user-details.service';
 import { IdsForSlot } from './../../classes/ids-for-slot';
 import { City } from './../../classes/city';
 import { DataService } from './../../services/data.service';
@@ -17,6 +18,7 @@ export class LandingPageComponent implements OnInit {
   // city: City;
   constructor(
     private service: DataService,
+    private userDetailsService: UserDetailsService,
     private router: Router
   ) { }
 
@@ -51,6 +53,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   logout(){
+    this.userDetailsService.userDatails.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 

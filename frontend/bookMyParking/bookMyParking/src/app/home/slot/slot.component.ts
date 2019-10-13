@@ -1,3 +1,5 @@
+import { UserDetails } from './../../classes/user-details';
+import { UserDetailsService } from './../../services/user-details.service';
 import { IdsForSlot } from './../../classes/ids-for-slot';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +18,8 @@ export class SlotComponent implements OnInit {
   responseMessageFlag = false;
   responseMessage = '';
   constructor(
-    private service: DataService
+    private service: DataService,
+    private userDetailsService: UserDetailsService
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,12 @@ export class SlotComponent implements OnInit {
       this.responseMessageClass = data['className']
       this.responseMessageFlag = true;
       if (data['message'] === 'Reserved successfully!') {
+        this.userDetailsService.userDatails.walletBalance -= 20;
+        this.service.deductBalance(this.userDetailsService.userDatails).subscribe(data => {
+          console.log(data);
+          const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'],data['walletBalance'], data['loggedIn']);
+          this.userDetailsService.userDatails = user;
+        })
         const idsForSlot = new IdsForSlot();
         idsForSlot.areaId = slot.id.areaId;
         idsForSlot.cityId = slot.id.cityId;
@@ -53,6 +62,12 @@ export class SlotComponent implements OnInit {
       this.responseMessageClass = data['className']
       this.responseMessageFlag = true;
       if (data['message'] === 'Reserved successfully!') {
+        this.userDetailsService.userDatails.walletBalance -= 40;
+        this.service.deductBalance(this.userDetailsService.userDatails).subscribe(data => {
+          console.log(data);
+          const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'],data['walletBalance'], data['loggedIn']);
+          this.userDetailsService.userDatails = user;
+        })
         const idsForSlot = new IdsForSlot();
         idsForSlot.areaId = slot.id.areaId;
         idsForSlot.cityId = slot.id.cityId;

@@ -1,10 +1,11 @@
+import { UserDetails } from './../classes/user-details';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailsService {
-  public isLoggedIn = false;
+  public userDatails = new UserDetails();
   constructor() { }
 
 }

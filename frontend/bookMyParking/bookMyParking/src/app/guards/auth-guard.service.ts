@@ -12,9 +12,8 @@ export class AuthGuardService implements CanActivate {
     return this.checkLogin();
   }
 
-  // @author shadadk
   checkLogin(): boolean {
-    if (this.userDetailsService.isLoggedIn) {
+    if (this.userDetailsService.userDatails.isLoggedIn) {
       return true;
     }
     this.router.navigate(['/login']);

@@ -28,7 +28,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   providers: [
-    Configuration
+    Configuration,
+    AuthGuardService,
+    UserDetailsService
   ],
   bootstrap: [AppComponent]
 })

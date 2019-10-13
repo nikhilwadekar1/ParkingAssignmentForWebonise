@@ -6,22 +6,29 @@ import org.springframework.stereotype.Service;
 import com.bookmyparking.demo.entities.UserInfo;
 import com.bookmyparking.demo.models.LoginModel;
 import com.bookmyparking.demo.models.Message;
+import com.bookmyparking.demo.models.UserModel;
 import com.bookmyparking.demo.repositories.LoginRepository;
 
 @Service
 public class LoginService {
 	@Autowired
 	LoginRepository loginRepo;
-	
-	public Message login(LoginModel loginData) {
+
+	public UserModel login(LoginModel loginData) {
+//		UserModel loggedInUser = new UserModel();
 		UserInfo user = this.loginRepo.findByUserName(loginData.getUserName());
-		if(user != null) {
-			if(user.getPassword().equals(loginData.getPassword())){
-				return new Message("Login Successful!", "alert-success");
-			}	
-		}else {
-			return new Message("Invalid user name!", "alert-danger");	
+		if (user != null) {
+			if (user.getPassword().equals(loginData.getPassword())) {
+				return new UserModel(user, true);
+			}else {
+				user.setUserName("Invalid login credentials!");
+				return new UserModel(user, false);
+			}
+		} else {
+			UserInfo invalidUser = new UserInfo();
+			invalidUser.setUserName("Invalid user name!");
+			return new UserModel(invalidUser, false);
 		}
-		return new Message("Invalid login credentials!", "alert-danger");
+
 	}
 }

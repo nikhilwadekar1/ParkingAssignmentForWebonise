@@ -1,3 +1,5 @@
+import { UserDetails } from './../../classes/user-details';
+import { UserDetailsService } from './../../services/user-details.service';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,8 +18,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private service: DataService,
+    private userDetailsService: UserDetailsService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -35,10 +38,13 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.service.login(this.userForm.value).subscribe(data => {
-      if(data['message'] === 'Login Successful!'){
+      if (data['loggedIn']) {
+        const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'],data['walletBalance'], data['loggedIn']);
+        console.log(user);
+        this.userDetailsService.userDatails = user;
         this.router.navigate(['homepage']);
       } else {
-        this.errorMessage = data['message'];
+        this.errorMessage = data['userName'];
         this.errorMessageFlag = true;
         setTimeout(() => {
           this.errorMessageFlag = false;

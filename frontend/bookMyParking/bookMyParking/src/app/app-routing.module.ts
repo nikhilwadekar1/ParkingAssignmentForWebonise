@@ -13,10 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'homepage',
+    canActivate: [AuthGuardService],
     component: LandingPageComponent,
     children: [
       {
         path: 'book',
+        canActivate: [AuthGuardService],
         component: SlotComponent
       }
     ]
