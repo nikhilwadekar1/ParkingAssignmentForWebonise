@@ -40,7 +40,7 @@ export class SlotComponent implements OnInit {
         this.userDetailsService.userDatails.walletBalance -= 20;
         this.service.deductBalance(this.userDetailsService.userDatails).subscribe(data => {
           console.log(data);
-          const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'],data['walletBalance'], data['loggedIn']);
+          const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'], data['walletBalance'], data['loggedIn']);
           this.userDetailsService.userDatails = user;
         })
         const idsForSlot = new IdsForSlot();
@@ -55,7 +55,7 @@ export class SlotComponent implements OnInit {
       }
     });
   }
-  
+
   reserveFwParking(slot) {
     this.service.reserveFwSlot(slot).subscribe(data => {
       this.responseMessage = data['message'];
@@ -65,15 +65,15 @@ export class SlotComponent implements OnInit {
         this.userDetailsService.userDatails.walletBalance -= 40;
         this.service.deductBalance(this.userDetailsService.userDatails).subscribe(data => {
           console.log(data);
-          const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'],data['walletBalance'], data['loggedIn']);
+          const user = new UserDetails(data['userId'], data['city'], data['contactNo'], data['email'], data['password'], data['userName'], data['walletBalance'], data['loggedIn']);
           this.userDetailsService.userDatails = user;
-        })
+        });
         const idsForSlot = new IdsForSlot();
         idsForSlot.areaId = slot.id.areaId;
         idsForSlot.cityId = slot.id.cityId;
         this.service.getFwSlots(idsForSlot).subscribe(data => {
           this.fwSlotsArray = data;
-        })
+        });
         setTimeout(() => {
           this.responseMessageFlag = false;
         }, 5000);

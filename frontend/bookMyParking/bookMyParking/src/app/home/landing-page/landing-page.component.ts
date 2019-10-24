@@ -15,6 +15,7 @@ export class LandingPageComponent implements OnInit {
   areas;
   selectedCityOption;
   selectedAreaOption;
+  availableBalance = 0.00;
   // city: City;
   constructor(
     private service: DataService,
@@ -26,6 +27,7 @@ export class LandingPageComponent implements OnInit {
     this.service.getCities().subscribe(data => {
       this.cities = data;
     });
+    this.availableBalance = this.userDetailsService.userDatails.walletBalance;
   }
 
   getAreas(){
